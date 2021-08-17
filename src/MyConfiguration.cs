@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using TestMahapps.Services;
 
 namespace TestMahapps
@@ -11,5 +12,7 @@ namespace TestMahapps
   {
     public static AppTheme Theme { get; set; } = AppTheme.Light;
     public static ThemeSelectorService ThemeSelector { get; set; }
-  }
+    public static Color AccentColor { get; set; }
+
+    }
 }

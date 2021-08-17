@@ -3,13 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TestMahapps"
+        xmlns:local="clr-namespace:TestMahapps" xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Background="{DynamicResource MahApps.Brushes.ThemeBackground}">
         <Label Content="Test Project" HorizontalAlignment="Left" Margin="27,37,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="27,68,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button Content="Change Theme" HorizontalAlignment="Left" Margin="316,37,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
 
+        <mah:ColorPicker DropDownClosed="ColorPicker_DropDownClosed" Margin="316,132,271,252" />
     </Grid>
 </Window>

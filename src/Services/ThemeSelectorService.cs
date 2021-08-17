@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using ControlzEx.Theming;
 using MahApps.Metro.Theming;
 
@@ -13,20 +14,18 @@ namespace TestMahapps.Services
   {
     public void InitializeThemes(IEnumerable<string> themes)
     {
-      foreach (var theme in themes)
-      {
-        ThemeManager.Current.AddLibraryTheme(new LibraryTheme(new Uri(theme), MahAppsLibraryThemeProvider.DefaultInstance));
-      }
 
       var currentlyAppliedTheme = MyConfiguration.Theme;
-      ApplyTheme(currentlyAppliedTheme);
+      ApplyTheme(currentlyAppliedTheme, Colors.Blue);
     }
 
-    public void ApplyTheme(AppTheme theme)
+    public void ApplyTheme(AppTheme theme, Color accent)
     {
-      ThemeManager.Current.ThemeSyncMode = ThemeSyncMode.SyncWithHighContrast;
-      ThemeManager.Current.SyncTheme();
-      ThemeManager.Current.ChangeTheme(Application.Current, $"My.{theme}.Blue", SystemParameters.HighContrast);
+            var newTheme = new Theme("MyTheme", "MyTheme", theme == AppTheme.Light ? "Light" : "Dark", accent.ToString(), accent, new SolidColorBrush(accent), true, true);
+
+            newTheme.Resources["MahApps.Brushes.ThemeBackground"] = new SolidColorBrush(new HSLColor(accent).GetTintedColor(theme == AppTheme.Light ? +0.8 : -0.8));
+
+      ThemeManager.Current.ChangeTheme(Application.Current,newTheme);
 
       MyConfiguration.Theme = theme;
     }
