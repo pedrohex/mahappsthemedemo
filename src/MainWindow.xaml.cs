@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +29,16 @@ namespace TestMahapps
     private void Button_Click(object sender, RoutedEventArgs e)
     {
       MyConfiguration.Theme = MyConfiguration.Theme == AppTheme.Light ? AppTheme.Dark : AppTheme.Light;
-      MyConfiguration.ThemeSelector.ApplyTheme(MyConfiguration.Theme);
+      MyConfiguration.ThemeSelector.ApplyTheme(MyConfiguration.Theme, MyConfiguration.AccentColor);
     }
-  }
+
+        private void ColorPicker_DropDownClosed(object sender, EventArgs e)
+        {
+            if (sender is ColorPicker colorPicker)
+            {
+                MyConfiguration.AccentColor = colorPicker.SelectedColor ?? Colors.Blue;
+                MyConfiguration.ThemeSelector.ApplyTheme(MyConfiguration.Theme, MyConfiguration.AccentColor);
+            }
+        }
+    }
 }
